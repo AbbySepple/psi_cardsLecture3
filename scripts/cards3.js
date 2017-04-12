@@ -79,6 +79,15 @@ $( document ).ready( function(){
 
   $( '#drawRandomCard' ).on( 'click', function(){
     console.log( 'in drawRandomCard');
+    // get random # between 0 and deck.length - 1
+    var rando = Math.random() * ( deck.length );
+    console.log( 'rando:', rando );
+    var rambo = Math.floor( rando );
+    console.log( 'rambo:', rambo );
+    console.log( 'random card:', deck[ rambo ] );
+    clearTable();
+    $( '#allCards' ).append( "<div class='card " + deck[rambo].suit + "' data-number='" + deck[rambo].number +
+    "' data-suit='" + deck[rambo].suit + "'>" + deck[rambo].number + "</div>" );
   }); // end drawRandomCard
 
   $( '#hideAll' ).on( 'click', function(){
@@ -92,7 +101,8 @@ $( document ).ready( function(){
     // loop through deck
     for (var i = 0; i < deck.length; i++) {
       // display each card
-      $( '#allCards' ).append( "<div class='card " + deck[i].suit + "' data-number='" + deck[i].number + "'>" + deck[i].number + "</div>" );
+      $( '#allCards' ).append( "<div class='card " + deck[i].suit + "' data-number='" + deck[i].number +
+      "' data-suit='" + deck[i].suit + "'>" + deck[i].number + "</div>" );
     }
 
   }); // end showDeck
@@ -104,8 +114,9 @@ $( document ).ready( function(){
 
 $( document ).on( 'click', '.card', function(){
   // when we click on a card we'll want to know on what card we clicked
-  console.log( 'in card class click' );
+  console.log( 'in card class click on document' );
   // get the card's number from it's data-number property
+  console.log( 'clicked on:', $( this ).data( 'number' ), 'of', $( this ).data( 'suit' ) );
   // log out the card
 }); // end card class on click
 
